@@ -2,6 +2,7 @@ package spring.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import spring.dto.TransactionDto;
 import spring.service.TransactionService;
@@ -15,12 +16,14 @@ import java.util.List;
 public class TransactionController {
     private final TransactionService service;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public List<TransactionDto> getList() {
         return service.getAll();
     }
 
     /* http://localhost:8080/transactions?start=2020-01-11&end=2020-01-20 */
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(params = {"start", "end"})
     public List<TransactionDto> getByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {

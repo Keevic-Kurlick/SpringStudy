@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class User {
     private String username;
+    private String firstname;
     private String password;
     private Set<Role> roles;
 }

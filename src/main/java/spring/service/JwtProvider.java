@@ -37,7 +37,9 @@ public class JwtProvider {
         final Date accessExpiration = Date.from(accessExpirationInstant); //приведение к формату дейт, совместимому с jwt-библиотекой
         return Jwts.builder()                           //генерация токена
                 .setSubject(user.getUsername())  //получатель
-                .setExpiration(accessExpiration)        //Срок действия
+                .setExpiration(accessExpiration)//Срок действия
+                .signWith(jwtAccessSecret)
+                .claim("firstname", user.getFirstname()) //имя
                 .claim("roles", user.getRoles()) //Claims: роли
                 .compact();
     }

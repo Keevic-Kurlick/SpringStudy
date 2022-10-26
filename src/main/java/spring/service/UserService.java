@@ -17,8 +17,8 @@ public class UserService implements UserServiceInterface {
 
     public UserService() {
         this.users = List.of(
-                new User("admin", "1234", Collections.singleton(Role.ADMIN)),
-                new User("user", "123", Collections.singleton(Role.USER))
+                new User("admin", "admin", "1234", Collections.singleton(Role.ADMIN)),
+                new User("user", "user", "1234", Collections.singleton(Role.USER))
         );
     }
 

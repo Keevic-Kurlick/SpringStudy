@@ -28,8 +28,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests(
                         auth -> auth
-                                .antMatchers("/api/login", "/api/token", "/api/balance",  "api/refresh").permitAll()
-                                .antMatchers("/api/transactions", "/api/transactions/**").hasRole("ADMIN")
+                                .antMatchers("/api/login", "/api/token").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
